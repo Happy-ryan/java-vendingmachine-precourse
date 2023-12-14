@@ -9,7 +9,7 @@ import java.util.*;
 public class OutputView {
     private static final String INPUT_MONEY_MESSAGE = "자판기가 보유하고 있는 금액을 입력해 주세요.";
     private static final String INPUT_MONEY_QUREY_MESSAGE = "투입 금액을 입력해 주세요.";
-    private static final String USER_MONEY_FORMAT = "투입 금액: %d ";
+    private static final String USER_MONEY_FORMAT = "투입 금액: %d원";
 
     private static final int d = 0;
 
@@ -49,7 +49,13 @@ public class OutputView {
     public static void printFinalMoneyMessage(){
         System.out.println("잔돈");
     }
-    public static void print() {
+    public static void printeMoney(int money) {
+        System.out.println(money);
+        System.out.println();
+    }
+
+    public static void printProductDetails(List<String> productDetails){
+        System.out.println(Parser.joinWithoutBlank(productDetails));
         System.out.println();
     }
 }
