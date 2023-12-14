@@ -3,6 +3,7 @@ package vendingmachine;
 import utils.Parser;
 import view.InputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -12,13 +13,26 @@ public class Application {
         System.out.println(vendingMachineMoney);
         System.out.println();
 
-        List<String> productDetail = InputView.readProductDetail();
-        System.out.println(Parser.joinWithoutBlank(productDetail));
+        VendingMachine vendingMachine = new VendingMachine(vendingMachineMoney);
+        System.out.println(vendingMachine.makeRandCoins(vendingMachineMoney));
 
-        int userMoney = InputView.readMoney(false);
-        System.out.println(userMoney);
+        List<String> productDetails = InputView.readProductDetail();
+        System.out.println(Parser.joinWithoutBlank(productDetails));
+        List<Product> products = new ArrayList<>();
+        for(String productDetail : productDetails){
+            String[] detail = Parser.extractValues(productDetail);
+            String name = detail[0];
+            int price = Integer.parseInt(detail[1]);
+            int number = Integer.parseInt(detail[2]);
+            products.add(new Product(name, price, number));
+        }
 
-        String purchasedProduct = InputView.readProduct(productDetail);
-        System.out.println(purchasedProduct);
+
+
+//        int userMoney = InputView.readMoney(false);
+//        System.out.println(userMoney);
+//
+//        String purchasedProduct = InputView.readProduct(productDetails);
+//        System.out.println(purchasedProduct);
     }
 }

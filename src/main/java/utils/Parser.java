@@ -21,4 +21,16 @@ public class Parser {
         }
         return IntegerList;
     }
+    public static String[] extractValues(String input) {
+        // 문자열을 적절히 처리하여 필요한 정보 추출
+        input = input.replaceAll("[\\[\\]]", ""); // 대괄호 제거
+        String[] values = input.split(",");
+
+        // 배열의 각 요소를 정리 (공백 제거)
+        for (int i = 0; i < values.length; i++) {
+            values[i] = values[i].trim();
+        }
+
+        return values;
+    }
 }

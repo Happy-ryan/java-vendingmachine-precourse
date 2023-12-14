@@ -1,6 +1,7 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
+import utils.Parser;
 
 import java.util.*;
 
@@ -90,9 +91,13 @@ public class InputView {
             if (!string.matches("\\[([가-힣]+),(\\d+),(\\d+)\\]")) {
                 throw new IllegalArgumentException("[ERROR] [한글,숫자,숫자]의 형식을 지켜주세요.");
             }
-            String product = string.split(",")[0];
-            int money = Integer.parseInt(string.split(",")[1]);
-            int productNumber = Integer.parseInt(string.split(",")[2]);
+
+            String[] product = Parser.extractValues(string);
+
+            String productName = product[0];
+            int money = Integer.parseInt(product[1]);
+            int productNumber = Integer.parseInt(product[2]);
+
             if (money < 100 || money % 10 != 0) {
                 throw new IllegalArgumentException("[ERROR] 상품의 가격은 최소 100원이며, 10원 단위입니다.");
             }
@@ -101,4 +106,5 @@ public class InputView {
             }
         }
     }
+
 }
