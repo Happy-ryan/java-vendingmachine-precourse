@@ -1,5 +1,8 @@
 package utils;
 
+import vendingmachine.Product;
+
+import java.text.DecimalFormat;
 import java.util.*;
 
 public class Parser {
@@ -21,6 +24,7 @@ public class Parser {
         }
         return IntegerList;
     }
+
     public static String[] extractValues(String input) {
         // 문자열을 적절히 처리하여 필요한 정보 추출
         input = input.replaceAll("[\\[\\]]", ""); // 대괄호 제거
@@ -33,4 +37,26 @@ public class Parser {
 
         return values;
     }
+
+    public static String formatNumberWithThousandsSeparator(int number) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        return decimalFormat.format(number) + "원";
+    }
+
+    public static LinkedHashMap<String, Integer> makeNamePrice(List<Product> products) {
+        LinkedHashMap<String, Integer> namePrice = new LinkedHashMap<>();
+        for (Product product : products) {
+            namePrice.put(product.getName(), product.getPrice());
+        }
+        return namePrice;
+    }
+
+    public static LinkedHashMap<String, Integer> makeNameNumber(List<Product> products) {
+        LinkedHashMap<String, Integer> nameNumber = new LinkedHashMap<>();
+        for (Product product : products) {
+            nameNumber.put(product.getName(), product.getPrice());
+        }
+        return nameNumber;
+    }
+
 }

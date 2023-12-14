@@ -3,9 +3,9 @@ package vendingmachine;
 public class Product {
     private final String name;
     private final int price;
-    private final int number;
+    private int number;
 
-    public Product(String name, int price, int number){
+    public Product(String name, int price, int number) {
         this.name = name;
         this.price = price;
         this.number = number;
@@ -21,5 +21,9 @@ public class Product {
 
     public int getNumber() {
         return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 }

@@ -18,7 +18,7 @@ public class Application {
         VendingMachine vendingMachine = new VendingMachine(vendingMachineMoney);
         OutputView.printCoinMessage();
         LinkedHashMap<Integer, Integer> coinNumber = vendingMachine.makeRandCoins(vendingMachineMoney);
-        OutputView.printCoins(coinNumber);
+        OutputView.printCoins(coinNumber, false);
 
         List<String> productDetails = InputView.readProductDetail();
         System.out.println(Parser.joinWithoutBlank(productDetails));
@@ -38,16 +38,12 @@ public class Application {
         }
 
         int userMoney = InputView.readMoney(false);
-        User user = new User(userMoney);
+        User user = new User(userMoney, possibleProduct);
         System.out.println(user.getUserMoney());
+        System.out.println();
 
-//        OutputView.printUserMoney(userMoney);
-//
-//        while (true) {
-//            OutputView.printUserMoney(userMoney);
-//            String purchasedProduct = InputView.readProduct(productDetails);
-//            System.out.println(purchasedProduct);
-//        }
+        Mediator mediator = new Mediator(coinNumber, user,products);
+        mediator.run();
 
     }
 }

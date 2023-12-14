@@ -8,11 +8,12 @@ public class User {
     private int userMoney;
     private List<String> possibleProducts;
 
-    public User(int userMoney) {
+    public User(int userMoney, List<String> possibleProducts){
         this.userMoney = userMoney;
+        this.possibleProducts = possibleProducts;
     }
 
-    public String buyProduct() {
+    public String buyProduct(){
         String purchasedProduct = InputView.readProduct(possibleProducts);
         return purchasedProduct;
     }
