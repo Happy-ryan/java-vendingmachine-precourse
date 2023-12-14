@@ -2,6 +2,7 @@ package view;
 
 import camp.nextstep.edu.missionutils.Console;
 import utils.Parser;
+import vendingmachine.Product;
 
 import java.util.*;
 
@@ -35,11 +36,11 @@ public class InputView {
 
     // ============================ //
     // case2. 단일 문자열만 입력
-    public static String readProduct(List<String> products) {
+    public static String readProduct(List<String> possibleProducts) {
         System.out.println("구매할 상품명을 입력해 주세요.");
         while (true) {
             try {
-                String string = inputProduct(products);
+                String string = inputProduct(possibleProducts);
                 return string;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -47,19 +48,19 @@ public class InputView {
         }
     }
 
-    private static String inputProduct(List<String> products) {
+    private static String inputProduct(List<String> possibleProducts) {
         String string = Console.readLine();
-        validateProduct(string, products);
+        validateProduct(string, possibleProducts);
         return string;
     }
 
-    private static void validateProduct(String string, List<String> products) {
-//        // 한글만 허용하는 정규식
+    private static void validateProduct(String string, List<String> possibleProducts) {
+
         if (!string.matches("^[가-힣]+$")) {
             throw new IllegalArgumentException("[ERROR] 한글만 허용됩니다.");
         }
         // 특정 문자만 허용하는 정규식(U와 D만 허용)
-        if (!products.contains(string)) {
+        if (!possibleProducts.contains(string)) {
             throw new IllegalArgumentException("[ERROR] 없는 상품 입니다.");
         }
     }
