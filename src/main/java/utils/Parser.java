@@ -5,7 +5,7 @@ import java.util.*;
 public class Parser {
     // 김성한,김성한,김성한 -> OutputView에 도움
     public static String joinWithoutBlank(List<String> stringList) {
-        return String.join(",", stringList);
+        return String.join(";", stringList);
     }
 
     // 김성한, 김성한, 김성한 -> OutputView에 도움
